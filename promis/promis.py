@@ -46,7 +46,7 @@ class ProMis:
             support: The points to compute exactly, with the output being interpolated to the same target as
                 the employed StaRMap
             logic: The constraints of the landscape(X) predicate, including its definition
-            n_jobs: How many workers to use in parallel
+            n_jobs: How many workers to use in parallel. Sequential execution for n_jobs = 0
             batch_size: How many pixels to infer at once
             check_required_relations: Only get the relations explicitly mentioned in the logic
             method: Interpolation method, either 'linear' or 'nearest'
