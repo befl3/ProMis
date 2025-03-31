@@ -87,9 +87,13 @@ class ProMis:
             # Add program to collection
             solvers.append(Solver(program))
 
-        # Solve in parallel with pool of workers
-        with Pool(n_jobs) as pool:
-            batched_results = pool.map(self.run_inference, solvers)
+        if not n_jobs:
+            # Sequential execution
+            batched_results = [self.run_inference(solver) for solver in solvers]
+        else:
+            # Solve in parallel with pool of workers
+            with Pool(n_jobs) as pool:
+                batched_results = pool.map(self.run_inference, solvers)
 
         # Make result of Pool computation into flat list of probabilities
         flattened_data = []
